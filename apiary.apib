@@ -1,0 +1,100 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# RESTFUL_API_OnlineStore
+
+## Login Collection [/login]
+
+### Add a Login [POST]
+
++ Request 
+    
+    + Body
+    
+            {
+                "username": "Jajangers",
+                "password": "wadidaw"
+            }
+
++ Response
+
+    + Body
+        
+            {
+                "id": 2,
+                "username": "Jajangers",
+                "token": {token}
+            }
+
+## Customer Collection [/customer]
+
+### List All Customers [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+        [
+            {
+               "id":1,
+               "name": "Maman",
+               "address": "Jonggol Timur",
+               "logins": [],
+               "orders": []
+            },
+            {
+               "id":1,
+               "name": "Jajang",
+               "address": "Jonggol Bawah",
+               "logins": [],
+               "orders": []
+            },
+            
+            
+        ]
+
+### Create a New Customer [POST]
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
