@@ -16,7 +16,7 @@ HOST: https://polls.apiblueprint.org/
                 "password": "wadidaw"
             }
 
-+ Response
++ Response 200
 
     + Body
         
@@ -53,48 +53,734 @@ HOST: https://polls.apiblueprint.org/
                "logins": [],
                "orders": []
             },
-            
-            
         ]
 
 ### Create a New Customer [POST]
 
-+ Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
++ Request
 
     + Headers
 
             Token: Bearer {token}
 
     + Body
+        
+            {
+                "name": "enyak",
+                "address" "kampung si doel"
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 4,
+                "name": "enyak",
+                "address": "kampung si doel",
+                "logins": null,
+                "orders": null
+            }
+            
+## Customer Collection [/customer/4]
+
+### Get a Single Customer [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "enyak",
+                "address": "kampung si doel",
+                "logins": null,
+                "orders": null
+            }
+            
+### Edit a Customer [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                "name":"jubaidah",
+                "address":"pondok terong"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "jubaidah",
+                "address": "pondok terong",
+                "logins": null,
+                "orders": null
+            }
+            
+### Delete a Customer [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+        [
+            {
+               "id":1,
+               "name": "Maman",
+               "address": "Jonggol Timur",
+               "logins": [],
+               "orders": []
+            },
+            {
+               "id":1,
+               "name": "Jajang",
+               "address": "Jonggol Bawah",
+               "logins": [],
+               "orders": []
+            },
+        ]
+
+## Order Collection [/order]
+
+### List All Orders [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+            {
+                "id": 1,
+                "customer_id": 1,
+                "delivery_id": 1,
+                "orderItems": []
+            }
+
+### Create a New Order [POST]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+        
+            {
+                "customer_id": 1,
+                "delivery_id": 1 
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 2,
+                "customer_id": 1,
+                "delivery_id": 1,
+                "orderItems": []
+            }
+            
+            
+## Order Collection [/order/2]
+
+### Get a Single Order [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 2,
+                "customer_id": 1,
+                "delivery_id": 1,
+                "orderItems": []
+            }
+            
+### Edit an Order [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                "customer_id": 2,
+                "delivery_id": 1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 2,
+                "customer_id": 2,
+                "delivery_id": 1,
+                "orderItems": []
+            }
+            
+### Delete an Order [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+            {
+                "id": 1,
+                "customer_id": 1,
+                "delivery_id": 1,
+                "orderItems": []
+            }  
+
+## Order Item Collection [/orderitem]
+
+### List All Order Items [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "order_id": 1,
+                    "product_id": 1,
+                    "quantity": 1
+                },
+                {
+                    "id": 2,
+                    "order_id": 1,
+                    "product_id": 2,
+                    "quantity": 2
+                }
+            ]
+
+### Create a New Order Item [POST]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+        
+            {
+                "order_id": 1,
+                "product_id": 1,
+                "quantity": 7
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {   
+                "id":4,
+                "order_id": 1,
+                "product_id": 1,
+                "quantity": 7
+            }
+            
+            
+## Order Collection [/order/4]
+
+### Get a Single Order Item [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id":4,
+                "order_id": 1,
+                "product_id": 1,
+                "quantity": 7
+            }
+            
+### Edit an Order Item [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                "order_id": 1,
+                "product_id": 1,
+                "quantity": 99
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id":4,
+                "order_id": 1,
+                "product_id": 1,
+                "quantity": 99
+            }
+            
+### Delete an Order Item [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+           [
+                {
+                    "id": 1,
+                    "order_id": 1,
+                    "product_id": 1,
+                    "quantity": 1
+                },
+                {
+                    "id": 2,
+                    "order_id": 1,
+                    "product_id": 2,
+                    "quantity": 2
+                }
+            ] 
+
+## Product Collection [/product]
+
+### List All Products [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "cat_id": 1,
+                    "name": "PS4",
+                    "price": 4000000,
+                    "orderItems":[]
+                },
+                {
+                    "id": 2,
+                    "cat_id": 1,
+                    "name": "iPad",
+                    "price": 15000000,
+                    "orderItems":[]
+                }
+            ]
+
+### Create a New Product [POST]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+        
+            {
+                "cat_id": 1,
+                "name": "Big Mac",
+                "price": 60000,
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {   
+                "id":6,
+                "cat_id": 1,
+                "name": "Big Mac",
+                "price": 60000,
+                "orderItems":[]
+            }
+            
+            
+## Product Collection [/product/6]
+
+### Get a Single Product [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id":6,
+                "cat_id": 1,
+                "name": "Big Mac",
+                "price": 60000,
+                "orderItems":[]
+            }
+            
+### Edit a Product [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                "cat_id": 1,
+                "name": "Big Mac",
+                "price": 7777
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id":6,
+                "cat_id": 1,
+                "name": "Big Mac",
+                "price": 7777,
+                "orderItems":[]
+            }
+            
+### Delete a Product [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+           [
+                {
+                    "id": 1,
+                    "cat_id": 1,
+                    "name": "PS4",
+                    "price": 4000000,
+                    "orderItems":[]
+                },
+                {
+                    "id": 2,
+                    "cat_id": 1,
+                    "name": "iPad",
+                    "price": 15000000,
+                    "orderItems":[]
+                }
+            ]
+            
+## Category Collection [/category]
+
+### List All Categories [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "name": "gadget",
+                    "description": "buat maenan",
+                    "products":[]
+                },
+                {
+                    "id": 2,
+                    "name": "kendaraan",
+                    "description": "buat keluyuran coy",
+                    "products":[]
+                }
+            ]
+ 
+### Create a New Category [POST]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+        
+            {
+                "name": "alatmasak",
+                "description": "buat mbikin magelangan",
+                
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {  
+                    "id": 3,
+                    "name": "alatmasak",
+                    "description": "buat mbikin magelangan",
+                    "products":[]
+            }
+            
+            
+## Product Collection [/category/3]
+
+### Get a Category [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                    "id": 3,
+                    "name": "alatmasak",
+                    "description": "buat mbikin magelangan",
+                    "products":[]
+            }
+            
+### Edit a Category [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                 "name": "alatmasak",
+                 "description": "buat mbikin mi dog dog"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id":3,
+                "name": "alatmasak",
+                "description": "buat mbikin mi dog dog"
+                "products":[]
+                
+            }
+            
+### Delete a Category [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+           [
+                {
+                    "id": 1,
+                    "name": "gadget",
+                    "description": "buat maenan",
+                    "products":[]
+                },
+                {
+                    "id": 2,
+                    "name": "kendaraan",
+                    "description": "buat keluyuran coy",
+                    "products":[]
+                }
+            ]
+            
+## Delivery Address Collection [/deliveryaddress]
+
+### List All Delivery Addressess [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+           
+                {
+                    "id": 1,
+                    "name": "Takumi",
+                    "address": "Nihong goo",
+                    "orders":[]
+                }
+ 
+### Create a New Delivery Address [POST]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
+    + Body
+        
+            {
+                "name": "Minamino",
+                "address": "Anfield"
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {  
+                    "id": 2,
+                    "name": "Minamino",
+                    "address": "Anfield"
+                    "orders":[]
+            }
+            
+            
+## Product Collection [/category/2]
+
+### Get a Delivery Address [GET]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {  
+                    "id": 2,
+                    "name": "Minamino",
+                    "address": "Anfield"
+                    "orders":[]
+            }
+            
+### Edit a Delivery Address [PUT]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+    
+    + Body
+        
+            {
+                 "name": "Minamino",
+                "address": "Japun dulunya"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {   
+                    "id": 2,
+                    "name": "Minamino",
+                    "address": "Japun dulunya",
+                    "orders":[]
+                
+            }
+            
+### Delete a Delivery Addresss [DELETE]
+
++ Request
+
+    + Headers
+
+            Token: Bearer {token}
+            
++ Response 200 (application/json)
+
+           {
+                    "id": 1,
+                    "name": "Takumi",
+                    "address": "Nihong goo",
+                    "orders":[]
             }
